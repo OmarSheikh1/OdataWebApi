@@ -1,0 +1,3 @@
+C:\Users\vmuser\source\repos\OdataWebApi\obj\Debug\netcoreapp2.1\OdataWebApi.csprojAssemblyReference.cache
+C:\Users\vmuser\source\repos\OdataWebApi\obj\Debug\netcoreapp2.1\OdataWebApi.AssemblyInfoInputs.cache
+C:\Users\vmuser\source\repos\OdataWebApi\obj\Debug\netcoreapp2.1\OdataWebApi.AssemblyInfo.cs
