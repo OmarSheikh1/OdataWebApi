@@ -21,7 +21,7 @@ namespace OdataWebApi.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastController : ODataController
     {
         private static readonly string[] Summaries = new[]
         {
@@ -52,9 +52,10 @@ namespace OdataWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Login")]
+        [EnableQuery]
+        [Route("Post")]
         //POST : /api/Account/Login
-        public IActionResult Login(LoginDto model)
+        public IActionResult Post(LoginDto model)
         {
             return Ok(model);
         }
