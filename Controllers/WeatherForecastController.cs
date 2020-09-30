@@ -29,10 +29,11 @@ namespace OdataWebApi.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        private readonly WeatherDbContext _context;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, WeatherDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
@@ -58,6 +59,30 @@ namespace OdataWebApi.Controllers
         public IActionResult Post(LoginDto model)
         {
             return Ok(model);
+        }
+
+        public IActionResult Patch([FromODataUri] string KeyId, [FromBody] Delta<WeatherForecast> weather)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var entity =  _context.WeatherForecast.Find(KeyId);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            weather.Patch(entity);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                
+            }
+           
+            return Updated(entity);
         }
     }
 }
